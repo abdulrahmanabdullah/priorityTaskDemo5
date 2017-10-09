@@ -6,9 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="?attr/actionBarSize"
     android:background="@color/colorPrimary"
-    android:elevation="4dp"
     android:orientation="vertical"
     app:theme="@style/toolBarTheme"
     app:popupTheme="@style/menuTheme">
-
 </android.support.v7.widget.Toolbar>
