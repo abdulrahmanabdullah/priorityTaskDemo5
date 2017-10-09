@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+
+        <item android:id="@+id/drawer_home_list"
+            android:title="home"
+            android:icon="@drawable/ic_home"
+            />
+
+        <item android:title="process done"
+            android:id="@+id/done_process"
+            android:icon="@drawable/ic_done_job"/>
+
+        <item android:title="process"
+            android:id="@+id/drawer_process"
+            android:icon="@drawable/ic_progress"/>
+
+    </group>
+
+    <item android:title="Communicate">
+        <menu>
+            <item
+                android:id="@+id/sync_process"
+                android:icon="@drawable/ic_sync"
+                android:title="sync" />
+            <item
+                android:id="@+id/exit"
+                android:icon="@drawable/ic_exit_icon"
+                android:title="exit" />
+
+        </menu>
+
+    </item>
+</menu>
