@@ -8,11 +8,14 @@ import android.support.v7.app.ActionBarDrawerToggle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Toast
+import com.abdulrahmanjavanrd.prioritytaskdemo5.fragments.FragTask
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.toolbar_layout.*
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
 
+    // manager
+    var manger = fragmentManager
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -29,6 +32,7 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
 
         /** call fragments method **/
+        callFragTask()
         /** end call fragments methods **/
     }
 
@@ -62,5 +66,11 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             else ->{}
         }
         return true
+    }
+
+    fun callFragTask(){
+        val frag = FragTask()
+        var tran  = manger.beginTransaction()
+        tran.add(R.id.frag_1_area,frag,"fragTask").commit()
     }
 }
