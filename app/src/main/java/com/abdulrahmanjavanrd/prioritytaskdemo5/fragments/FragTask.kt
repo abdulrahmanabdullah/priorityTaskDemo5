@@ -29,7 +29,14 @@ class FragTask : Fragment(){
     var sp_numbers:Spinner?=null
     var sp_date :Spinner ? =null
 
+    var i:Int = 0
+    var d:Int =0
+
+
+    // calculator hours and day and month, than save inside this pram ... totalTime .
+    var totalTime:Int ? = null
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View {
+
         var v:View = inflater!!.inflate(R.layout.frag_task_layout,container,false)
         task = v.findViewById(R.id.task_type)
         task!!.text = itemOne[0]
@@ -43,35 +50,47 @@ class FragTask : Fragment(){
     private fun Spinner.mySelectedItemd(listene: AdapterView.OnItemSelectedListener){
         onItemSelectedListener = listene
     }
-    var i:Int = 0
    private fun takeNumbers(){
         sp_numbers!!.mySelectedItemd(object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                when(p0!!.getItemAtPosition(p2!!)){
-                    0->{i++ }
-                    1->{i+= 2 }
-                }
+            i = p0!!.getItemIdAtPosition(p2!!).toInt()-1
                 Log.i(TAG,"your choice $i")
             }
-
-
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                getI(0,0)
             }
 
         })
         sp_date!!.mySelectedItemd(object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
-                Log.i(TAG,"And you take :  ${p0!!.getItemAtPosition(p2!!)}")
+                d = p0!!.getItemIdAtPosition(p2!!).toInt()
+                getI(i,d)
+                Log.i(TAG,"And you take :  ${d}")
+
             }
-
-
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+                getI(0,0)
             }
         })
     }
 
+    private fun getI(i:Int,d:Int):Int{
+        var result:Int= 0
+        if (d != 0 ){
+            when(d){
+                1 -> { result =  i * 60  }
+                2 -> {result =i * 1440 }
+                3-> {result = i * 30 }
+                else ->{
+
+                }
+            }
+        }
+        Log.i(TAG," Now result  = $result ")
+        totalTime = result
+       return result
+        Log.d(TAG," total Time = $totalTime")
+    }
 
 
 }
