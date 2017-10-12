@@ -94,6 +94,7 @@ android:textSize="20sp"
 
         <TextView
             android:textAlignment="center"
+            android:id="@+id/txvTimer"
             android:text="@string/show_time"
             android:layout_marginLeft="20dp"
             android:textSize="20sp"

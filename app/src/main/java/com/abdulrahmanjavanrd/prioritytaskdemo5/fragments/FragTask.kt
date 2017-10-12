@@ -1,6 +1,9 @@
 package com.abdulrahmanjavanrd.prioritytaskdemo5.fragments
 
 import android.app.Fragment
+import android.content.BroadcastReceiver
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -25,7 +28,7 @@ class FragTask : Fragment(){
     var itemOne:ArrayList<String> = myList.list
 
     var task:TextView?=null
-
+    var txvTimer:TextView?=null
     var sp_numbers:Spinner?=null
     var sp_date :Spinner ? =null
 
@@ -40,6 +43,7 @@ class FragTask : Fragment(){
         var v:View = inflater!!.inflate(R.layout.frag_task_layout,container,false)
         task = v.findViewById(R.id.task_type)
         task!!.text = itemOne[0]
+        txvTimer = v.findViewById(R.id.txvTimer)
         sp_numbers = v.findViewById(R.id.sp_numbers)
         sp_date = v.findViewById(R.id.sp_date)
         takeNumbers()
@@ -54,23 +58,25 @@ class FragTask : Fragment(){
         sp_numbers!!.mySelectedItemd(object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
             i = p0!!.getItemIdAtPosition(p2!!).toInt()-1
-                Log.i(TAG,"your choice $i")
+                totalTime =  getI(i,0)
+                txvTimer!!.text = "$totalTime"
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
-                getI(0,0)
             }
 
         })
         sp_date!!.mySelectedItemd(object :AdapterView.OnItemSelectedListener{
             override fun onItemSelected(p0: AdapterView<*>?, p1: View?, p2: Int, p3: Long) {
                 d = p0!!.getItemIdAtPosition(p2!!).toInt()
-                getI(i,d)
+               totalTime =  getI(i,d)
+                txvTimer!!.text = "$totalTime"
                 Log.i(TAG,"And you take :  ${d}")
 
             }
             override fun onNothingSelected(p0: AdapterView<*>?) {
                 getI(0,0)
             }
+
         })
     }
 
@@ -86,11 +92,21 @@ class FragTask : Fragment(){
                 }
             }
         }
+        else {
+            result = i * 1
+        }
         Log.i(TAG," Now result  = $result ")
-        totalTime = result
+        Log.i(TAG," total Time = $totalTime")
        return result
-        Log.d(TAG," total Time = $totalTime")
     }
+
+    /************** BroadcastReceiver Inner class *******************/
+    public inner class MyBroadcast:BroadcastReceiver(){
+        override fun onReceive(p0: Context?, p1: Intent?) {
+            TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        }
+    }
+    /************** end  BroadcastReceiver Inner class *******************/
 
 
 }
