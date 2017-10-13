@@ -16,11 +16,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <receiver android:name=".fragments.FragTask$MyBroadcast">
-            <intent-filter android:priority="30">
-                <action android:name="my.receiver.start.timer"/>
-            </intent-filter>
-        </receiver>
+        <service android:name=".services.MyService"/>
+        <service android:name=".services.TaskService"/>
+        <!--<receiver android:name=".fragments.FragTask$MybroadcastInner">-->
+            <!--<intent-filter >-->
+                <!--<action android:name="action.service.to.fragTask"/>-->
+            <!--</intent-filter>-->
+        <!--</receiver>-->
     </application>
 
 </manifest>
